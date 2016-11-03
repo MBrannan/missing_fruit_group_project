@@ -1,0 +1,11 @@
+.fruitBox {
+  /*border: 1px solid black;*/
+  display: inline-block;
+}
+img {
+  height: 175px;
+  width: 175px;
+}
+ button {
+   float: left;
+ }
