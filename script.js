@@ -18,6 +18,8 @@ $(document).ready(function() {
 
 	appendToDom();
 
+	//Makes prices appear, and allows them to change in real time
+
 	function appendToDom() {
 
 		$("h1").text("Total Available Cash: $" + parseFloat(totalCash.toFixed(2)));
@@ -31,6 +33,7 @@ $(document).ready(function() {
 		$("#bananaInventory").text(bananaInventory);
 		$("#pearInventory").text(pearInventory);
 	}
+
 	setInterval(function priceChange() {
 
 		changePrices();
@@ -39,7 +42,9 @@ $(document).ready(function() {
 
 	}, 15000);
 
-	$('button').on('click', function(){
+	//This code makes the fruit buying button work
+
+	$('#buttonBuyApple').on('click', function(){
 		var selectedFruit = $(this).parent().attr('id');
 		if(selectedFruit == 'apple' && totalCash >= applePrice){
 			appleInventory++;
@@ -48,7 +53,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('button').on('click', function(){
+	$('#buttonBuyOrange').on('click', function(){
 		var selectedFruit = $(this).parent().attr('id');
 		if(selectedFruit == 'orange'&& totalCash >= orangePrice){
 			orangeInventory++;
@@ -57,7 +62,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('button').on('click', function(){
+	$('#buttonBuyBanana').on('click', function(){
 		var selectedFruit = $(this).parent().attr('id');
 		if(selectedFruit == 'banana' && totalCash >= bananaPrice){
 			bananaInventory++;
@@ -66,7 +71,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('button').on('click', function(){
+	$('#buttonBuyPear').on('click', function(){
 		var selectedFruit = $(this).parent().attr('id');
 		if(selectedFruit == 'pear' && totalCash >= pearPrice){
 			pearInventory++;
@@ -75,6 +80,45 @@ $(document).ready(function() {
 		}
 	});
 
+	//This code makes the fruit selling button work
+
+	$('#buttonSellApple').on('click', function(){
+		var soldFruit = $(this).parent().attr('id');
+		if(soldFruit == 'apple' && appleInventory > 0) {
+			appleInventory--;
+			totalCash += applePrice;
+			appendToDom();
+		}
+	});
+
+	$('#buttonSellOrange').on('click', function(){
+		var soldFruit = $(this).parent().attr('id');
+		if(soldFruit == 'orange' && orangeInventory > 0){
+			orangeInventory--;
+			totalCash += orangePrice;
+			appendToDom();
+		}
+	});
+
+	$('#buttonSellBanana').on('click', function(){
+		var soldFruit = $(this).parent().attr('id');
+		if(soldFruit == 'banana' && bananaInventory > 0){
+			bananaInventory--;
+			totalCash += bananaPrice;
+			appendToDom();
+		}
+	});
+
+	$('#buttonSellPear').on('click', function(){
+		var soldFruit = $(this).parent().attr('id');
+		if(soldFruit == 'pear' && pearInventory > 0){
+			pearInventory--;
+			totalCash += pearPrice;
+			appendToDom();
+		}
+	});
+
+	//Just functions
 
 	function changePrices() {
 		applePriceChange = randomNumber(-50, 50);
@@ -112,6 +156,8 @@ $(document).ready(function() {
 			pearPrice = 9.99
 		}
 	}
+
+
 
 
 });
